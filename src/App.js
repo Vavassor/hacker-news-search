@@ -1,28 +1,16 @@
-import React, {useState} from "react";
+import React from "react";
 import "./App.css";
-import HnApi from "./utils/HnApi";
+import {search} from "./actions";
 import SearchBox from "./components/SearchBox";
 import SearchResults from "./components/SearchResults";
-import LoadingPlaceholder, {loadStatus} from "./components/LoadingPlaceholder";
+import LoadingPlaceholder from "./components/LoadingPlaceholder";
+import {connect} from "react-redux";
 
-function App() {
-  const [results, setResults] = useState([]);
-  const [searchStatus, setSearchStatus] = useState(loadStatus.NONE);
-  const [lastQuery, setLastQuery] = useState("");
+function App(props) {
+  const {dispatch, lastQuery, results, searchStatus} = props;
   
   const handleSearch = (query) => {
-    setLastQuery(query);
-    setSearchStatus(loadStatus.LOADING);
-
-    HnApi
-      .search(query)
-      .then((response) => {
-        setSearchStatus(loadStatus.SUCCESS);
-        setResults(response.data.hits);
-      })
-      .catch((error) => {
-        setSearchStatus(loadStatus.FAILURE);
-      });
+    dispatch(search(query));
   };
 
   return (
@@ -41,4 +29,15 @@ function App() {
   );
 }
 
-export default App;
+function mapStateToProps(state) {
+  const {search} = state;
+  const {lastQuery, status, results} = search;
+
+  return {
+    lastQuery,
+    results,
+    searchStatus: status,
+  };
+}
+
+export default connect(mapStateToProps)(App);
