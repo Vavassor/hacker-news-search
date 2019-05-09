@@ -10,7 +10,7 @@ function SearchResults(props) {
   };
 
   const renderResults = (props) => {
-    if (props.results.length) {
+    if (props.results && props.results.length) {
       return props.results.map(result => renderResult(result));
     } else {
       return (

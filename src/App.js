@@ -3,7 +3,7 @@ import "./App.css";
 import {search} from "./actions";
 import SearchBox from "./components/SearchBox";
 import SearchResults from "./components/SearchResults";
-import LoadingPlaceholder, {loadStatus} from "./components/LoadingPlaceholder";
+import LoadingPlaceholder from "./components/LoadingPlaceholder";
 import {connect} from "react-redux";
 
 function App(props) {
@@ -31,17 +31,10 @@ function App(props) {
 
 function mapStateToProps(state) {
   const {search} = state;
-  const {isFetching, results} = search;
-
-  let searchStatus;
-  if (isFetching) {
-    searchStatus = loadStatus.LOADING;
-  } else {
-    searchStatus = loadStatus.SUCCESS;
-  }
+  const {status, results} = search;
 
   return {
-    searchStatus,
+    searchStatus: status,
     results,
   };
 }

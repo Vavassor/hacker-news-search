@@ -1,4 +1,12 @@
-import HnApi from "./utils/HnApi";
+import HnApi from "../utils/HnApi";
+
+export const FAIL_SEARCH = "FAIL_SEARCH";
+
+function failSearch() {
+  return {
+    type: FAIL_SEARCH,
+  };
+}
 
 export const RECIEVE_STORIES = "RECIEVE_STORIES";
 
@@ -23,13 +31,8 @@ export function search(query) {
     return HnApi
       .search(query)
       .then(
-        response => response.data,
-        (error) => {
-          console.error("What a lame outcome!");
-        }
-      )
-      .then((data) => {
-        dispatch(recieveStories(data.hits))
-      });
+        response => dispatch(recieveStories(response.data.hits)),
+        error => dispatch(failSearch())
+      );
   };
 }

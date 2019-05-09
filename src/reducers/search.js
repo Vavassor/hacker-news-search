@@ -1,15 +1,21 @@
-import {RECIEVE_STORIES, REQUEST_STORIES} from "../actions";
+import {FAIL_SEARCH, RECIEVE_STORIES, REQUEST_STORIES} from "../actions";
+import {loadStatus} from "../components/LoadingPlaceholder";
 
-function search(state = {isFetching: false, results: []}, action) {
+function search(state = {status: loadStatus.NONE, results: []}, action) {
   switch (action.type) {
+    case FAIL_SEARCH:
+      return Object.assign({}, state, {
+        status: loadStatus.FAILURE,
+      });
+    
     case REQUEST_STORIES:
       return Object.assign({}, state, {
-        isFetching: true,
+        status: loadStatus.LOADING,
       });
 
     case RECIEVE_STORIES:
       return Object.assign({}, state, {
-        isFetching: false,
+        status: loadStatus.SUCCESS,
         results: action.results,
       });
     
