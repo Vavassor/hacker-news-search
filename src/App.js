@@ -1,28 +1,16 @@
-import React, {useState} from "react";
+import React from "react";
 import "./App.css";
-import HnApi from "./utils/HnApi";
+import {search} from "./actions";
 import SearchBox from "./components/SearchBox";
 import SearchResults from "./components/SearchResults";
 import LoadingPlaceholder, {loadStatus} from "./components/LoadingPlaceholder";
+import {connect} from "react-redux";
 
-function App() {
-  const [results, setResults] = useState([]);
-  const [searchStatus, setSearchStatus] = useState(loadStatus.NONE);
-  const [lastQuery, setLastQuery] = useState("");
+function App(props) {
+  const {dispatch, searchStatus, results} = props;
   
   const handleSearch = (query) => {
-    setLastQuery(query);
-    setSearchStatus(loadStatus.LOADING);
-
-    HnApi
-      .search(query)
-      .then((response) => {
-        setSearchStatus(loadStatus.SUCCESS);
-        setResults(response.data.hits);
-      })
-      .catch((error) => {
-        setSearchStatus(loadStatus.FAILURE);
-      });
+    dispatch(search(query));
   };
 
   return (
@@ -32,7 +20,7 @@ function App() {
         <SearchBox handleSearch={handleSearch} />
         <LoadingPlaceholder
           status={searchStatus}
-          handleRetry={event => handleSearch(lastQuery)}
+          handleRetry={event => handleSearch("")}
         >
           <SearchResults results={results} />
         </LoadingPlaceholder>
@@ -41,4 +29,21 @@ function App() {
   );
 }
 
-export default App;
+function mapStateToProps(state) {
+  const {search} = state;
+  const {isFetching, results} = search;
+
+  let searchStatus;
+  if (isFetching) {
+    searchStatus = loadStatus.LOADING;
+  } else {
+    searchStatus = loadStatus.SUCCESS;
+  }
+
+  return {
+    searchStatus,
+    results,
+  };
+}
+
+export default connect(mapStateToProps)(App);
