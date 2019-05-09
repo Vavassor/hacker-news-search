@@ -7,7 +7,7 @@ import LoadingPlaceholder from "./components/LoadingPlaceholder";
 import {connect} from "react-redux";
 
 function App(props) {
-  const {dispatch, searchStatus, results} = props;
+  const {dispatch, lastQuery, results, searchStatus} = props;
   
   const handleSearch = (query) => {
     dispatch(search(query));
@@ -20,7 +20,7 @@ function App(props) {
         <SearchBox handleSearch={handleSearch} />
         <LoadingPlaceholder
           status={searchStatus}
-          handleRetry={event => handleSearch("")}
+          handleRetry={event => handleSearch(lastQuery)}
         >
           <SearchResults results={results} />
         </LoadingPlaceholder>
@@ -31,11 +31,12 @@ function App(props) {
 
 function mapStateToProps(state) {
   const {search} = state;
-  const {status, results} = search;
+  const {lastQuery, status, results} = search;
 
   return {
-    searchStatus: status,
+    lastQuery,
     results,
+    searchStatus: status,
   };
 }
 

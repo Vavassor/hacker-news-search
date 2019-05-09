@@ -1,10 +1,18 @@
 import {FAIL_SEARCH, RECIEVE_STORIES, REQUEST_STORIES} from "../actions";
 import {loadStatus} from "../components/LoadingPlaceholder";
 
-function search(state = {status: loadStatus.NONE, results: []}, action) {
+function search(
+  state = {
+    lastQuery: "",
+    results: [],
+    status: loadStatus.NONE
+  },
+  action
+) {
   switch (action.type) {
     case FAIL_SEARCH:
       return Object.assign({}, state, {
+        lastQuery: action.lastQuery,
         status: loadStatus.FAILURE,
       });
     
