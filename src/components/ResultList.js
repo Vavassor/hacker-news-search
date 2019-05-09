@@ -1,6 +1,6 @@
 import React from "react";
 
-function SearchResults(props) {
+function ResultList(props) {
   const renderResult = (result) => {
     return (
       <p key={result.objectID}>
@@ -26,4 +26,4 @@ function SearchResults(props) {
   );
 }
 
-export default SearchResults;
+export default ResultList;
