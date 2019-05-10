@@ -19,7 +19,11 @@ function App(props) {
 
       <footer>
         <div className="footer-column">
-          <a href="https://github.com/Vavassor/Hacker-News-Search">Github</a>
+          <img className="social-icon" src="github-mark.svg" alt="" />
+          <a className="social-link" href="https://github.com/Vavassor/Hacker-News-Search">Github</a>
+          <div className="credit">
+            Powered by the <a href="https://hn.algolia.com/api">HN Search API by Algolia</a>.
+          </div>
         </div>
       </footer>
     </>
