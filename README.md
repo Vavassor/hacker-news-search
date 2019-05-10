@@ -1,3 +1,9 @@
+# Hacker News Search
+
+A search app for [Hacker News](https://news.ycombinator.com/) built using the [HN Search API by Algolia](https://hn.algolia.com/api). Try out the app at [Hacker News Search](https://hnews-search.herokuapp.com)!
+
+## Create React App
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
