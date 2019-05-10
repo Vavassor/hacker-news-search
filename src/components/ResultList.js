@@ -9,7 +9,7 @@ function ResultList(props) {
       ));
     } else {
       return (
-        <p>No results found.</p>
+        <div className="alert-generic">No results found.</div>
       );
     }
   };
