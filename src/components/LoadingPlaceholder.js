@@ -1,10 +1,10 @@
 import React from "react";
 
-const loadStatus = {
-  NONE: 0,
-  LOADING: 1,
-  SUCCESS: 2,
-  FAILURE: 3,
+export const loadStatus = {
+  NONE: "NONE",
+  LOADING: "LOADING",
+  SUCCESS: "SUCCESS",
+  FAILURE: "FAILURE",
 };
 
 function LoadingPlaceholder(props) {
@@ -37,5 +37,4 @@ function LoadingPlaceholder(props) {
   }
 }
 
-export {loadStatus};
 export default LoadingPlaceholder;

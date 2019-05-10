@@ -1,6 +1,6 @@
 import React from "react";
 import {connect} from "react-redux";
-import {search} from "../actions";
+import {search} from "../actionCreators";
 import SearchBox from "../components/SearchBox";
 
 function StorySearch(props) {
