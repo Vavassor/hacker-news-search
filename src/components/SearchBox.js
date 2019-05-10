@@ -9,19 +9,28 @@ function SearchBox(props) {
   };
 
   return (
-    <form
-      role="search"
-      onSubmit={handleSubmit}
-      noValidate
-    >
-      <input
-        type="text"
-        value={query}
-        onChange={event => setQuery(event.currentTarget.value)}
-        aria-label="search text"
-      />
-      <button type="submit">Search</button>
-    </form>
+    <div className="search-box">
+      <form
+        role="search"
+        onSubmit={handleSubmit}
+        noValidate
+      >
+        <input
+          className="field-text field-inline"
+          type="text"
+          value={query}
+          onChange={event => setQuery(event.currentTarget.value)}
+          aria-label="search text"
+        />
+
+        <button
+          className="button-primary"
+          type="submit"
+        >
+          Search
+        </button>
+      </form>
+    </div>
   );
 }
 

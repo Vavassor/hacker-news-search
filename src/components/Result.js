@@ -7,18 +7,20 @@ function Result(props) {
   const itemUrl = `https://news.ycombinator.com/item?id=${encodeURIComponent(result.objectID)}`;
   
   return (
-    <div key={result.objectID}>
-      <div>
+    <div className="result" key={result.objectID}>
+      <div className="result-title">
         <a href={result.url}>{result.title}</a>
       </div>
-      <div>
-        By <a href={authorUrl}>{result.author}</a>
-      </div>
-      <div>
-        <a href={itemUrl}>{moment(result.created_at).fromNow()}</a>
-      </div>
-      <div>
-        <a href={itemUrl}>{result.num_comments} comments</a>
+      <div className="result-metadata">
+        <div className="result-metadata-item">
+          By <a href={authorUrl}>{result.author}</a>
+        </div>
+        <div className="result-metadata-item">
+          <a href={itemUrl}>{moment(result.created_at).fromNow()}</a>
+        </div>
+        <div className="result-metadata-item">
+          <a href={itemUrl}>{result.num_comments} comments</a>
+        </div>
       </div>
     </div>
   );

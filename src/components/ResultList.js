@@ -15,9 +15,9 @@ function ResultList(props) {
   };
 
   return (
-    <>
+    <div className="result-list">
       {renderResults(props)}
-    </>
+    </div>
   );
 }
 
