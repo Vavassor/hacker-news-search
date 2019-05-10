@@ -5,7 +5,7 @@ function ResultList(props) {
   const renderResults = () => {
     if (props.results && props.results.length) {
       return props.results.map(result => (
-        <Result result={result} />
+        <Result key={result.objectID} result={result} />
       ));
     } else {
       return (
