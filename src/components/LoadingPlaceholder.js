@@ -16,15 +16,16 @@ function LoadingPlaceholder(props) {
 
     case loadStatus.FAILURE:
       return (
-        <p>
-          Connection failed.
+        <div className="alert-error">
+          <span className="alert-message">Connection failed.</span>
           <button
+            className="button-secondary"
             type="button"
             onClick={props.handleRetry}
           >
             Retry
           </button>
-        </p>
+        </div>
       );
 
     case loadStatus.LOADING:
