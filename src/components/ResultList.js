@@ -1,17 +1,12 @@
 import React from "react";
+import Result from "./Result";
 
 function ResultList(props) {
-  const renderResult = (result) => {
-    return (
-      <p key={result.objectID}>
-        <a href={result.url}>{result.title}</a>
-      </p>
-    );
-  };
-
-  const renderResults = (props) => {
+  const renderResults = () => {
     if (props.results && props.results.length) {
-      return props.results.map(result => renderResult(result));
+      return props.results.map(result => (
+        <Result result={result} />
+      ));
     } else {
       return (
         <p>No results found.</p>
@@ -20,9 +15,9 @@ function ResultList(props) {
   };
 
   return (
-    <>
+    <div className="result-list">
       {renderResults(props)}
-    </>
+    </div>
   );
 }
 

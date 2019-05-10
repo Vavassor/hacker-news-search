@@ -1,6 +1,6 @@
 import React from "react";
 import {connect} from "react-redux";
-import {search} from "../actions";
+import {search} from "../actionCreators";
 import LoadingPlaceholder from "../components/LoadingPlaceholder";
 import ResultList from "../components/ResultList";
 
