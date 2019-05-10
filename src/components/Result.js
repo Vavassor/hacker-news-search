@@ -7,7 +7,7 @@ function Result(props) {
   const itemUrl = `https://news.ycombinator.com/item?id=${encodeURIComponent(result.objectID)}`;
   
   return (
-    <div className="result" key={result.objectID}>
+    <div className="result">
       <div className="result-title">
         <a href={result.url}>{result.title}</a>
       </div>
