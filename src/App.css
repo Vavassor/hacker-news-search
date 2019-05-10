@@ -115,6 +115,7 @@ main {
 
 .result-metadata {
   display: flex;
+  flex-wrap: wrap;
 }
 
 .result-metadata-item {
